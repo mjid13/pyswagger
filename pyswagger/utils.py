@@ -2,14 +2,14 @@ from __future__ import absolute_import
 from .consts import private
 from .errs import CycleDetectionError
 import six
-import imp
+import importlib as imp
 import sys
 import datetime
 import re
 import os
 import operator
 import functools
-import collections
+import collections.abc as collections
 
 #TODO: accept varg
 def scope_compose(scope, name, sep=private.SCOPE_SEPARATOR):
@@ -314,7 +314,7 @@ def normalize_url(url):
     """
     if not url:
         return url
-
+    # print(type(url))
     matched = _windows_path_prefix.match(url)
     if matched:
         return path2url(url)

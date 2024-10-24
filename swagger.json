@@ -1,0 +1,67 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This API retrieves doctor profile details.",
+    "version": "1.0.0",
+    "title": "Doctor Profile API"
+  },
+  "host": "www.abeergroup.om",
+  "basePath": "/WebServices.asmx",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/GetDoctorProfileDetails": {
+      "post": {
+        "summary": "Retrieve doctor profile details",
+        "description": "Fetches details of a doctor using their DocID.",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Doctor ID to fetch profile details.",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "DocID": {
+                  "type": "string",
+                  "example": "671"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Doctor profile details retrieved successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "d": {
+                  "type": "string",
+                  "description": "Contains the JSON string with doctor profiles"
+                }
+              },
+              "example": {
+                "d": "{\"listDets\":[{\"HeaderName\":\"Profile\",\"HeaderDescription\":\"Dr. John Doe Profile\"}]}"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid DocID"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}
